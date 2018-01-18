@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * @date 2017-05-21 11:18
  */
 @Component
-@ConfigurationProperties(prefix = "spring.datasource")
+@ConfigurationProperties(prefix = "console.datasource")
 public class DruidProperties {
 
     private String url = "jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull";

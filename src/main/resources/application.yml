@@ -38,8 +38,8 @@ spring:
 
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
-  mapper-locations: classpath*:com/bookie/guns/**/mapping/*.xml
-  typeAliasesPackage: com.bookie.guns.common.persistence.model
+  mapper-locations: classpath*:mapper/**/*.xml
+  typeAliasesPackage: com.bookie.guns.common.bean
   global-config:
     id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
     db-column-underline: false
@@ -58,15 +58,15 @@ mybatis-plus:
 ##########################################################
 console:
   datasource:
-    url: jdbc:mysql://192.168.78.12:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
-    username: 'fanhui'
-    password: '1314fan.'
+    url: jdbc:mysql://192.168.77.101:13306/crc_bookie?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: 'crc_bookie'
+    password: 'by2015crc_bookie'
 
 game:
   datasource:
-    url: jdbc:mysql://192.168.78.12:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
-    username: 'fanhui'
-    password: '1314fan.'
+    url: jdbc:mysql://192.168.77.101:13306/crc_auth?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: 'crc_auth'
+    password: 'by2015crc_auth'
 
 #logging
 logging:
