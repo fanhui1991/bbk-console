@@ -5,15 +5,58 @@ var Feng = {
             this.ctxPath = ctx;
         }
     },
+    setMatchconfirm: function (tip, ensure) {//询问框
+        parent.layer.confirm(tip, {
+            title: "info",
+            btn: ['确定','取消']
+        }, function (index) {
+            parent.layer.close(index);
+            ensure();
+        }, function (index) {
+            parent.layer.close(index);
+        });
+    },
     confirm: function (tip, ensure) {//询问框
         parent.layer.confirm(tip, {
-            btn: ['确定', '取消']
+            title: "info",
+            btn: ['确定','取消']
         }, function (index) {
             ensure();
             parent.layer.close(index);
         }, function (index) {
             parent.layer.close(index);
         });
+    },
+    layerOpenTip :function(title,html,fun1) {
+        //弹出窗口 支持html 和执行方法的，Feng.layerOpenTip("请确认数据源对应的本地队伍：",html,function(){})
+        var index=layer.open({
+            title: title
+            ,content: html,
+            btn:['确定','取消'],
+            btn1:function(index,layero){
+                fun1()
+            },btn2:function (index,layero) {
+                parent.layer.close()
+            }
+        });
+        this.layerIndex = index;
+    },
+    layerOpen : function (title,width,height,url) {
+        //跳转到弹出层页面 调用方法 Feng.layerOpen("新建联赛名称","50%","50%","/localLeagueManage/toAddTournamet")
+        var index = layer.open({
+            type: 2,
+            title: title,
+            area: [width, height], //宽高
+            fix: false, //不固定
+            maxmin: false,
+            content: Feng.ctxPath + url
+        })
+        this.layerIndex = index;
+    },
+    confirmOnlyTure: function (tip, ensure) {//询问框
+        parent.layer.confirm(tip, {
+            btn: ['确定']
+        })
     },
     log: function (info) {
         console.log(info);
@@ -31,6 +74,15 @@ var Feng = {
     },
     error: function (info) {
         Feng.alert(info, 2);
+    },
+    en_error: function (data) {
+        //后台传回来的消息  resMap.put("msg","该联赛本地不存在,请去本地联赛管理新增···"); resMap.put("en_msg","not exist")
+        var Language = getCookie("userLanguage");
+        if(Language =="en"){
+            Feng.alert($.i18n.prop("operationfailure")+" "+data["en_msg"], 2);
+        }else {
+            Feng.alert($.i18n.prop("operationfailure")+" "+data["msg"], 2);
+        }
     },
     infoDetail: function (title, info) {
         var display = "";
@@ -137,5 +189,19 @@ var Feng = {
             live: 'enabled',
             message: '该字段不能为空'
         });
+    },
+    isEmpty:function(obj){
+        if(Object.prototype.toString.call(obj) == "[object Object]"){
+            var i;
+            for(i in obj){
+                return false
+            }
+            return true;
+        }
+        if(obj == null || typeof (obj) == "undefined" || obj == undefined || obj == "undefined" || (""+obj).toUpperCase() == "NULL" || ""+obj == ""){ // 0 == "" ->true
+            return true ;
+        }
+
+        return false ;
     }
 };

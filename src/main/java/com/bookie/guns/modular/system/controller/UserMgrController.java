@@ -23,6 +23,8 @@ import com.bookie.guns.core.shiro.ShiroUser;
 import com.bookie.guns.core.util.ToolUtil;
 import com.bookie.guns.modular.system.factory.UserFactory;
 import com.bookie.guns.modular.system.warpper.UserWarpper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -152,6 +154,7 @@ public class UserMgrController extends BaseController {
         }
     }
 
+    private  final Logger LOG = LoggerFactory.getLogger(this.getClass().getName());
     /**
      * 查询管理员列表
      */
@@ -160,9 +163,6 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime) {
         List<Map<String, Object>> users = managerDao.selectUsers(name, beginTime, endTime);
-        Map m = new HashMap();
-        List<Map<String, Object>> gameFh = gameMapper.gameFh(m);
-
         return new UserWarpper(users).warp();
     }
 

@@ -1,3 +1,21 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+/target/
+
+# eclipse
+.settings/
+.classpath
+.project
+logs/
+
+# idea
 .idea/
-target/
-src/test
+*.iml
+
+*velocity.log*
+
+.idea

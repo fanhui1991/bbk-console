@@ -101,11 +101,12 @@
         <Logger name="org.springframework.cloud.stream.binder.rabbit" level="info" /> &lt;!&ndash;stream使用&ndash;&gt;-->
         <Logger name="org.apache.ibatis" level="debug" includeLocation="true" /> <!-- actuate 日志 -->
         <Logger name="org.springframework.boot.autoconfigure" level="debug" includeLocation="true" />
+        <Logger name="com.bookie.guns.dao" level="debug" includeLocation="true" />
         <Root level="info" includeLocation="false">
             <AppenderRef ref="info_file" />
              <AppenderRef ref="error_file" />
-            <!--<AppenderRef ref="debug_file" />
-            <AppenderRef ref="trace_file" />-->
+            <AppenderRef ref="debug_file" />
+            <!--<AppenderRef ref="trace_file" />-->
             <AppenderRef ref="Console" />
         </Root>
     </Loggers>
